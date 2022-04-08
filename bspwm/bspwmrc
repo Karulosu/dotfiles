@@ -1,0 +1,123 @@
+#!/usr/bin/env bash
+
+## Configurations --------------------------------------------#
+
+set -U SXHKD_SHELL bash
+
+xrandr --dpi 96
+if [[ $(xrandr -q | grep 'HDMI-1-0 connected') ]]; then
+    xrandr --output HDMI-1-0 --primary --mode 1920x1080 --left-of eDP1 --dpi 96
+fi
+
+
+workspaces() {
+
+if [[ $(xrandr --listmonitors | grep 'HDMI-1-0') ]]; then
+        bspc monitor HDMI-1-0 -d '6' '7' '8' '9'
+        bspc monitor eDP1 -d '1' '2' '3' '4' '5'
+    else
+        bspc monitor -n  eDP1 -d '1' '2' '3' '4' '5' '6' '7' '8' '9'
+    fi
+}
+workspaces
+
+bspc config border_width 2
+bspc config window_gap 10
+bspc config split_ratio 0.50
+
+bspc config focused_border_color "#FFFFFF"
+bspc config normal_border_color "$BACKGROUND"
+
+bspc config borderless_monocle true
+bspc config gapless_monocle true
+bspc config paddingless_monocle true
+bspc config single_monocle false
+bspc config focus_follows_pointer true
+
+## Window rules ----------------------------------------------#
+
+# remove all rules first
+# bspc rule -r *:*
+
+# add all windows tiled
+# bspc rule -a *:* state=tiled
+
+# 1 > terminal
+# bspc rule -a Alacritty desktop='1' follow=on focus=on
+
+# 2 > web
+# bspc rule -a firefox desktop='2' follow=on focus=on
+
+# 3 > files
+
+# 4 > code
+#declare -a code=()
+#for i in ${code[@]}; do
+#   bspc rule -a $i desktop='4' state=tiled follow=on focus=on; done
+
+# 5 > office and docs
+declare -a office=(Gucharmap Atril Evince \
+libreoffice-writer libreoffice-calc libreoffice-impress \
+libreoffice-startcenter libreoffice Soffice *:libreofficedev *:soffice)
+for i in ${office[@]}; do
+   bspc rule -a $i desktop='5' follow=on focus=on; done
+
+# 6 > Art
+declare -a art=("Gimp-2.10" krita)
+for i in ${art[@]}; do
+   bspc rule -a $i desktop='6' follow=on focus=on; done
+
+
+
+# 7 > Communication
+declare -a comm=(Thunderbird TelegramDesktop)
+for i in ${comm[@]}; do
+   bspc rule -a $i desktop='7' follow=on focus=on; done
+
+# 8 > media
+
+# 9 > music
+
+# 0 > settings
+
+# special rules
+
+bspc rule -a Conky state=floating manage=off
+bspc rule -a feh state=floating
+
+## Autostart -------------------------------------------------#
+
+# Kill if already running
+killall -9 xsettingsd sxhkd dunst polybar nm-applet blueman-applet picom
+
+
+# Lauch notification daemon
+dunst &
+
+# Lauch xsettingsd daemon
+# xsettingsd &
+
+feh --bg-fill ~/Pictures/wallpapers/futurejapan.jpg
+SXHKD_SHELL=/bin/sh sxhkd &
+
+nm-applet &
+blueman-applet &
+
+wmname compiz
+sh ~/.config/polybar/launch.sh
+picom --experimental-backends
+
+# usr/bin/emacs --deamon &
+
+#wmname LG3D
+
+
+# Enable Super Keys For Menu
+ksuperkey -e 'Super_L=Alt_L|F1' &
+ksuperkey -e 'Super_R=Alt_L|F1' &
+
+# Enable power management
+# xfce4-power-manager &
+
+# Fix cursor
+xsetroot -cursor_name left_ptr

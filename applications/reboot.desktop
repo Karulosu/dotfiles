@@ -1,0 +1,8 @@
+[Desktop Entry]
+Encoding=UTF-8
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/bin/reboot
+Name=Reboot
+Icon=/usr/share/icons/Papirus/symbolic/actions/system-reboot-symbolic.svg

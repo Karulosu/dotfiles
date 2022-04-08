@@ -1,0 +1,8 @@
+[Desktop Entry]
+Encoding=UTF-8
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/bin/kill -9 -1
+Name=Logout
+Icon=/usr/share/icons/Papirus/16x16/apps/gnome-logout.svg

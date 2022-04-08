@@ -1,0 +1,518 @@
+## Colors ##
+
+[colors]
+background = #aa141A1B
+background-alt = #3c3836
+
+foreground = #FFFFFF
+foreground-alt = #83A598
+
+text = #1d2021
+text-alt = #3c3836
+
+primary = #ff6961
+secondary = #d65d0e
+underline = #ff6961
+
+
+alert = #fb4934
+
+## Bar Settings ##
+
+[bar/main]
+width = 100%
+height = 32
+radius = 12.0
+fixed-center = true
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+border-size = 10
+border-top-size = 0
+border-bottom-size = 0
+border-color = #001B2224
+
+line-size = 4
+
+padding = 1
+
+module-margin = 0
+
+monitor = ${env:MONITOR}
+
+offset-y = 6
+
+
+## Fonts ##
+
+font-0 = "SauceCodePro Nerd Font:size:11;2"
+font-1 = "FontAwesome:size=12;3"
+font-2 = "Iosevka Nerd Font:size=11;3"
+font-3 = "Terminus:size=11;3"
+
+## bspwm Config ##
+
+modules-left = bspwm
+modules-center =
+modules-right = kernel arch-aur-updates battery pulseaudio xbacklight temperature date
+
+separator = |
+separator-background = ${colors.background}
+
+#tray-position = right
+#tray-padding = 2
+
+scroll-up = bspc desktop -f prev.local
+scroll-down = bspc desktop -f next.local
+
+wm-name = bspwm
+wm-restack = bspwm
+enable-ipc = true
+
+cursor-click = pointer
+
+## Xwindow ##
+
+[module/xwindow]
+type = internal/xwindow
+label = [%title:0:55:.%]
+#label = %title:0:90:..%
+label-padding-left = 1
+label-empty-padding-left = 1
+label-empty-padding-right = 1
+label-empty = [Arch Linux]
+
+# Added Xwindow Color 
+label-padding-right = 1
+label-empty-foreground = #000000
+label-empty-background = #7FA094
+format-foreground = #000000
+label-background = #7FA094
+
+## FileSystem ## 
+
+[module/filesystem]
+type = internal/fs
+interval = 1000
+
+mount-0 = /
+
+# %free%
+label-mounted =  %free%
+format-mounted-foreground = #FFFFFF
+format-mounted-padding = 1
+
+label-unmounted = %mountpoint% not mounted
+label-unmounted-foreground = ${colors.text-alt}
+
+## WorkSpaces ##
+
+[module/bspwm]
+type = internal/bspwm
+
+pin-workspaces = true
+inline-mode = false
+
+format-background = ${colors.background}
+enable-click = true
+enable-scroll = true
+reverse-scroll = false
+
+fuzzy-match = false
+
+
+ws-icon-0 = 1;
+ws-icon-1 = 2;
+ws-icon-2 = 3;
+ws-icon-3 = 4;
+ws-icon-4 = 5;
+ws-icon-5 = 6;
+ws-icon-6 = 7;
+ws-icon-7 = 8;
+ws-icon-8 = 9;
+ws-icon-9 = 0;
+
+#  
+
+format = <label-state>
+format-font = 4
+label-monitor = %icon%
+
+# %index%
+
+label-focused = %{F#34ffd9}%icon%%{F#ffffff}
+label-focused-background = ${colors.background}
+label-focused-underline= ${colors.underline}
+label-focused-overline =
+label-focused-padding = 2
+
+label-occupied = %icon%
+label-occupied-foreground = ${colors.primary}
+label-occupied-background = ${colors.background}
+;label-occupied-underline = ${color.GREEN}
+label-occupied-padding = 2
+
+label-urgent =%icon%
+label-urgent-foreground = ${colors.YELLOW}
+label-urgent-background = ${colors.background}
+label-urgent-underline = ${colors.YELLOW}
+label-urgent-padding = 2
+
+label-empty = %icon%
+label-empty-background = ${colors.background}
+label-empty-foreground = ${color.FOREGROUND}
+label-empty-padding = 2
+
+; Separator in between workspaces
+label-separator = |
+label-separator-padding = 0
+label-separator-foreground = ${color.ALTBLACK}
+label-separator-background = ${colors.background}
+
+## Battery ##
+
+[module/battery]
+type = internal/battery
+
+; This is useful in case the battery never reports 100% charge
+full-at = 90
+
+battery = BAT1
+adapter = ADP1
+
+poll-interval = 5
+
+label-full = %{F#11E157}  %{F#FFFFFF}%percentage%%
+label-full-padding-left = 1
+label-full-padding-right = 1
+label-full-foreground = #FFFFFF
+label-full-background = ${colors.background}
+
+label-discharging = %{F#ffffff}%percentage%%
+label-charging = %{F#ffffff}%percentage%%
+format-charging = <animation-charging> <label-charging>
+format-discharging = <ramp-capacity> <label-discharging>
+
+label-charging-padding-left = 0
+label-charging-padding-right = 1
+label-discharging-padding-left = 0
+label-discharging-padding-right = 1
+
+ramp-capacity-0-padding = 1
+ramp-capacity-1-padding = 1
+ramp-capacity-2-padding = 1
+ramp-capacity-3-padding = 1
+ramp-capacity-4-padding = 1
+
+animation-charging-0-padding = 1
+animation-charging-1-padding = 1
+animation-charging-2-padding = 1
+animation-charging-3-padding = 1
+animation-charging-4-padding = 1
+
+animation-discharging-0-padding = 1
+animation-discharging-1-padding = 1
+animation-discharging-2-padding = 1
+animation-discharging-3-padding = 1
+animation-discharging-4-padding = 1
+
+; Only applies if <ramp-capacity> is used
+ramp-capacity-0 = %{F#9F0F0F}
+ramp-capacity-1 = %{F#9F0F0F}
+ramp-capacity-2 = %{F#fdfd96}
+ramp-capacity-3 = %{F#fdfd96}
+ramp-capacity-4 = %{F#11E157}
+
+; Only applies if <bar-capacity> is used
+bar-capacity-width = 10
+
+; Only applies if <animation-charging> is used
+animation-charging-0 = %{F#11E157}
+animation-charging-1 = %{F#11E157}
+animation-charging-2 = %{F#11E157}
+animation-charging-3 = %{F#11E157}
+animation-charging-4 = %{F#11E157}
+; Framerate in milliseconds
+animation-charging-framerate = 750
+
+; Only applies if <animation-discharging> is used
+animation-discharging-0 = ${colors.primary}
+animation-discharging-1 = ${colors.primary}
+animation-discharging-2 = ${colors.primary}
+animation-discharging-3 = ${colors.primary}
+animation-discharging-4 = ${colors.primary}
+; Framerate in milliseconds
+animation-discharging-framerate = 500
+
+## Kernel Version ##
+
+[module/kernel]
+type = custom/script
+exec = ~/.local/bin/kernel
+tail = false
+interval = 1024
+
+format-foreground = #FFFFFF
+format-background = ${colors.background}
+format-prefix = %{F#} %{F#ffffff}
+format-padding = 0
+;format-underline =
+
+## Brightness ##
+
+[module/xbacklight]
+type = internal/xbacklight
+interval = 2
+
+card = intel_backlight@
+
+format = %{F#BDCB0B}<ramp> %{F#FFFFFF}<label>
+label = %percentage%%
+
+format-background = ${colors.background}
+
+ramp-width = 10
+ramp-indicator = 
+ramp-indicator-foreground = #FFFFFF
+ramp-indicator-font = 2
+ramp-fill = ─
+ramp-fill-font = 2
+ramp-empty = ─
+ramp-empty-font = 2
+format-foreground = #FFFFFF
+format-padding = 1
+
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+ramp-3 = 
+ramp-4 = 
+ramp-5 = 
+ramp-6 = 
+ramp-7 = 
+ramp-8 = 
+ramp-9 = 
+ramp-font = 12
+
+## Cpu Load ##
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+format-prefix = " "
+format-prefix-padding-right = 0
+label = %percentage%%
+format-foreground = #FFFFFF
+format-background = ${colors.background}
+format-padding = 1
+
+## Memory Load ##
+
+[module/memory]
+type = internal/memory
+interval = 2
+format-prefix = " "
+label = %percentage_used%%
+
+format-foreground = #FFFFFF
+format-background = ${colors.background}
+format-padding = 1
+
+## Date and Time ##
+
+[module/date]
+type = internal/date
+interval = 1
+
+date = 
+date-alt = %A %B %e %Y 
+#date-alt-padding-left = 1
+
+#time =  %H:%M 
+time = %{F#61ffb8} %{F#ffffff}%H:%M 
+time-alt =
+
+label = %date% %time%
+label-foreground = #FFFFFF
+format-background = ${colors.background}
+label-padding = 0
+label-padding-left = 0
+label-padding-right = 1
+
+## Audio ##
+
+[module/pulseaudio]
+type = internal/pulseaudio
+
+format-volume = <ramp-volume> <label-volume>
+label-volume = %percentage%%
+format-volume-foreground = #FFFFFF
+format-volume-padding = 1
+
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+ramp-volume-3 = 
+ramp-volume-4 = 
+ramp-volume-5 = 
+ramp-volume-6 = 
+ramp-volume-7 = 
+ramp-volume-8 = 
+ramp-volume-9 = 
+ramp-volume-font = 2
+
+label-muted =  muted
+format-muted-foreground = #0A0D0C
+format-muted-background = ${colors.primary}
+format-muted-padding = 1
+
+## Cpu Temperature ##
+
+[module/temperature]
+type = internal/temperature
+thermal-zone = 0
+warn-temperature = 60
+
+format = %{F#ffb861}<ramp> %{F#ffffff}<label>
+format-warn = %{F#ffb861}<ramp> %{F#ffffff}<label-warn>
+format-warn-foreground = #FFFFFF
+format-foreground = #FFFFFF
+format-background = ${colors.background}
+format-padding = 1
+format-warn-padding = 1
+label = %temperature-c%
+label-warn = %temperature-c%
+interval = 10
+
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+ramp-3 = 
+ramp-4 = 
+ramp-5 = 
+ramp-6 = 
+ramp-7 = 
+ramp-8 = 
+ramp-9 = 
+ramp-font = 2
+
+## Other Setting ##
+
+[settings]
+screenchange-reload = true
+
+[global/wm]
+margin-top = 0
+margin-bottom = 0
+
+## Pacman and Aur Updates ##
+
+[module/arch-aur-updates]
+type = custom/script
+exec = ~/.config/polybar/scripts/check-all-updates.sh
+interval = 3600
+label = %{F#61a8ff} %{F#FFFFFF}:%output%
+label-padding = 1
+format-foreground = #FFFFFF
+format-background = ${colors.background}
+#format-prefix = "  "
+format-prefix-foreground = #FFFFFF
+
+## Powermenu ##
+
+[module/powermenu]
+type = custom/menu
+format-spacing = 1
+
+label-open = "  "
+label-open-foregund = #FFFFFF
+#label-close = "cancel"
+label-close-padding = 1
+label-close-background = #7FA094
+label-close-foreground = #000000
+#label-separator = |
+#label-separator-foreground = #FFFFFF
+
+menu-0-0 = Reboot
+menu-0-0-background = #7FA094
+menu-0-0-foreground = #000000
+menu-0-0-padding = 1
+menu-0-0-exec = menu-open-1
+menu-0-1 = Logout
+menu-0-1-background = #7FA094
+menu-0-1-foreground = #000000 
+menu-0-1-padding = 1
+menu-0-1-exec = menu-open-3
+menu-0-2 = Power off
+menu-0-2-background = #7FA094
+menu-0-2-foreground = #000000 
+menu-0-2-padding = 1
+menu-0-2-exec = menu-open-2
+
+
+menu-1-0 = Cancel
+menu-1-0-background = #7FA094
+menu-1-0-foreground = #000000
+menu-1-0-padding = 1
+menu-1-0-exec = menu-open-0
+menu-1-1 = Reboot
+menu-1-1-background = #7FA094
+menu-1-1-foreground = #000000
+menu-1-1-padding = 1
+menu-1-1-exec = reboot
+
+menu-2-0 = Poweroff
+menu-2-0-background = #7FA094
+menu-2-0-foreground = #000000
+menu-2-0-padding = 1
+menu-2-0-exec = poweroff
+menu-2-1 = Cancel
+menu-2-1-background = #7FA094
+menu-2-1-foreground = #000000
+menu-2-1-padding = 1
+menu-2-1-exec = menu-open-0
+
+menu-3-0 = Logout
+menu-3-0-background = #7FA094
+menu-3-0-foreground = #000000
+menu-3-0-padding = 1
+menu-3-0-exec = kill -9 -1
+menu-3-1 = Cancel
+menu-3-1-background = #7FA094
+menu-3-1-foreground = #000000
+menu-3-1-padding = 1
+menu-3-1-exec = menu-open-0
+
+
+
+## Other Modules ##
+
+[module/wallpaper]
+type = custom/script
+exec = echo ">>"
+click-left= feh -z --bg-fill /home/rajan/.local/share/wallhaven
+
+[module/Pacman-Updates]
+type = custom/script
+exec = ~/.config/polybar/scripts/Pacman-Updates.sh
+interval = 1000
+label =  :%output%
+label-padding = 1 
+format-foreground = #FFFFFF
+#format-background = #8d62ad
+#format-prefix = "  "
+format-prefix-foreground = #FFFFFF
+
+
+[module/Aur-Updates]
+type = custom/script
+exec = ~/.config/polybar/scripts/Aur-Updates.sh
+interval = 1000
+label =  :%output%
+label-padding = 1
+format-foreground = #FFFFFF
+#format-background = ${colors.background}
+#format-prefix = "  "
+format-prefix-foreground = #FFFFFF
+#format-underline = #FFBB00
+
