@@ -5,7 +5,7 @@ vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
     signs = false,
     underline = false,
     update_in_insert = false,
-    virtual_text = false
+    virtual_text = true
 })
 
 local lsp_installer = require("nvim-lsp-installer")
@@ -28,3 +28,13 @@ require'nvim-lsp-installer'.post_install_hook = function()
     setup_servers() -- reload installed servers
     vim.cmd("bufdo e") -- this triggers the FileType autocmd that starts the server
 end
+
+require("null-ls").setup({
+    sources = {
+        require("null-ls").builtins.formatting.stylua,
+        -- require("null-ls").builtins.diagnostics.eslint,
+        -- require("null-ls").builtins.diagnostics.code_actions,
+        -- require("null-ls").builtins.diagnostics.diagnostics,
+        -- require("null-ls").builtins.completion.spell,
+    },
+})

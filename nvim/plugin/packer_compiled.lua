@@ -126,11 +126,6 @@ _G.packer_plugins = {
     path = "/home/karulosu/.local/share/nvim/site/pack/packer/start/gruvbox",
     url = "https://github.com/gruvbox-community/gruvbox"
   },
-  ["legendary.nvim"] = {
-    loaded = true,
-    path = "/home/karulosu/.local/share/nvim/site/pack/packer/start/legendary.nvim",
-    url = "https://github.com/mrjones2014/legendary.nvim"
-  },
   ["lightspeed.nvim"] = {
     loaded = true,
     path = "/home/karulosu/.local/share/nvim/site/pack/packer/start/lightspeed.nvim",
@@ -150,6 +145,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/karulosu/.local/share/nvim/site/pack/packer/start/nui.nvim",
     url = "https://github.com/MunifTanjim/nui.nvim"
+  },
+  ["null-ls.nvim"] = {
+    loaded = true,
+    path = "/home/karulosu/.local/share/nvim/site/pack/packer/start/null-ls.nvim",
+    url = "https://github.com/jose-elias-alvarez/null-ls.nvim"
   },
   ["nvim-cmp"] = {
     loaded = true,
@@ -236,8 +236,8 @@ time([[Config for Comment.nvim]], false)
 -- Load plugins in order defined by `after`
 time([[Sequenced loading]], true)
 vim.cmd [[ packadd nvim-cmp ]]
-vim.cmd [[ packadd cmp-path ]]
 vim.cmd [[ packadd cmp-buffer ]]
+vim.cmd [[ packadd cmp-path ]]
 time([[Sequenced loading]], false)
 if should_profile then save_profiles() end
 

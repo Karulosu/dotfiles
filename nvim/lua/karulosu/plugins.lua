@@ -29,21 +29,16 @@ return require("packer").startup {
         use "neovim/nvim-lspconfig"
         use 'williamboman/nvim-lsp-installer'
         use "onsails/lspkind-nvim"
+        use "jose-elias-alvarez/null-ls.nvim"
 
         -- COLORS
         use "norcalli/nvim-colorizer.lua"
 
         -- TODO COMMENTS
-        use {"folke/todo-comments.nvim", requires = { {"nvim-lua/plenary.nvim"}}}
-
-        -- TREE FILES
-        -- use {
-        --     'kyazdani42/nvim-tree.lua',
-        --     requires = {
-        --         'kyazdani42/nvim-web-devicons', -- optional, for file icon
-        --     },
-        --     config = function() require'nvim-tree'.setup {} end
-        -- }
+        use {
+            "folke/todo-comments.nvim", 
+            requires = "nvim-lua/plenary.nvim"
+        }
 
         -- AUTOCOMPLETION
     use 'hrsh7th/nvim-cmp'
@@ -70,15 +65,14 @@ return require("packer").startup {
     }
     -- Improve ui
     use {'stevearc/dressing.nvim'}
-    -- Show keymaps
-    use({'mrjones2014/legendary.nvim'})
+    -- Tree
     use { "nvim-neo-tree/neo-tree.nvim",
-        --        branch = "v2.x",
-        requires = { 
-            "nvim-lua/plenary.nvim",
-            "kyazdani42/nvim-web-devicons", -- not strictly required, but recommended
-            "MunifTanjim/nui.nvim" 
-        },
+    branch = "v2.x",
+    requires = { 
+        "nvim-lua/plenary.nvim",
+        "kyazdani42/nvim-web-devicons",
+        "MunifTanjim/nui.nvim" 
+    },
     }
 end,
 config = {

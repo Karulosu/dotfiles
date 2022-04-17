@@ -2,6 +2,11 @@ local key_map = vim.api.nvim_set_keymap
 
 local opts = { noremap=true, silent=true }
 
+-- Remap space to leader
+vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
+
  -- TELESCOPE
  key_map("n","<space><space>",':Telescope find_files<CR>', opts)
  key_map('n','<space>pp',":lua require'telescope'.extensions.project.project{ display_type = 'full'}<CR>",opts)
@@ -31,8 +36,24 @@ key_map('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
 key_map('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
 key_map("i", "<C-E>", "<Plug>luasnip-next-choice", opts)
 key_map("s", "<C-E>", "<Plug>luasnip-next-choice", opts)
-key_map("n", "s", "<Plug>Lightspeed_omni_s", { noremap = false})
+--key_map("n", "s", "<Plug>Lightspeed_omni_s", { noremap = false})
 
-key_map("n", "gs", "<Plug>Lightspeed_omni_gs", { noremap = false})
+--key_map("n", "gs", "<Plug>Lightspeed_omni_gs", { noremap = false})
 key_map("n", "<A-x>", "<cmd>lua require('legendary').find()<CR>", opts)
 key_map("n", "<A-d>", "<cmd>:Neotree toggle focus<CR>", opts)
+
+-- Telescope
+vim.keymap.set('n', '<leader>b', require('telescope.builtin').buffers)
+vim.keymap.set('n', '<leader>sf', function()
+  require('telescope.builtin').find_files { previewer = false }
+end)
+vim.keymap.set('n', '<leader>sb', require('telescope.builtin').current_buffer_fuzzy_find)
+vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags)
+vim.keymap.set('n', '<leader>st', require('telescope.builtin').tags)
+vim.keymap.set('n', '<leader>sd', require('telescope.builtin').grep_string)
+vim.keymap.set('n', '<leader>sp', require('telescope.builtin').live_grep)
+vim.keymap.set('n', '<leader>so', function()
+  require('telescope.builtin').tags { only_current_buffer = true }
+end)
+vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles)
+

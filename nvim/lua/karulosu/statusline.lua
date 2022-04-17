@@ -26,7 +26,6 @@ local colors = {
   fg = '#a89984',
   skyblue = '#7daea3',
   red = '#ea6962',
-  hola
 }
 
 local vi_mode_colors = {

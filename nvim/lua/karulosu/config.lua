@@ -8,7 +8,7 @@ local g = vim.g
 
 cmd "syntax enable"
 cmd "filetype indent on"
-cmd "inoremap jj <Esc>"
+-- cmd "inoremap jj <Esc>"
 cmd "map <silent> <esc> :noh <CR>"
 cmd "set expandtab"
 cmd "set smartindent"
